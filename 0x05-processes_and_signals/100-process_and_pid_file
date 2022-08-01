@@ -1,1 +1,11 @@
 #!/usr/bin/env bash
+# Prints "I am invicible!!!" when receiving a SIGTERM signal
+echo "$$" > /var/run/my_process.pid
+trap 'echo "I hate the kill command"; rm /var/run/my_process.pid; exit' 15 #SIGQUIT
+trap 'rm /var/run/my_process.pid; exit' 3 #SIGQUIT
+trap 'Y U no love me?!' 2 #SIGINT
+while true
+do
+    echo "To infinity and beyond"
+    sleep 2
+done
